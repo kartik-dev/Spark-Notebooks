@@ -1,6 +1,44 @@
 {
   "paragraphs": [
     {
+      "text": "%angular\n\n\u003cstyle\u003e\n#myGraph {\n  font: 10px sans-serif;\n  width: 960px;\n  height: 500px;\n  margin: auto;\n}\n\n.chord path {\n  fill-opacity: .67;\n  stroke: #000;\n  stroke-width: .5px;\n}\n\n\u003c/style\u003e\n\n\u003cdiv id\u003d\"myGraph\"\u003e\u003c/div\u003e\n\u003cscript\u003e\n\n// From http://mkweb.bcgsc.ca/circos/guide/tables/\nvar matrix \u003d [\n  [11975,  5871, 8916, 2868],\n  [ 1951, 10048, 2060, 6171],\n  [ 8010, 16145, 8090, 8045],\n  [ 1013,   990,  940, 6907]\n];\n\nvar chord \u003d d3.layout.chord()\n    .padding(.05)\n    .sortSubgroups(d3.descending)\n    .matrix(matrix);\n\nvar width \u003d 960,\n    height \u003d 500\n    innerRadius \u003d Math.min(width, height) * .41,\n    outerRadius \u003d innerRadius * 1.1;\n\nvar fill \u003d d3.scale.ordinal()\n    .domain(d3.range(4))\n    .range([\"#000000\", \"#FFDD89\", \"#957244\", \"#F26223\"]);\n\nvar svg \u003d d3.select(\"#myGraph\").append(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");\n\nsvg.append(\"g\").selectAll(\"path\")\n    .data(chord.groups)\n  .enter().append(\"path\")\n    .style(\"fill\", function(d) { return fill(d.index); })\n    .style(\"stroke\", function(d) { return fill(d.index); })\n    .attr(\"d\", d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius))\n    .on(\"mouseover\", fade(.1))\n    .on(\"mouseout\", fade(1));\n\nvar ticks \u003d svg.append(\"g\").selectAll(\"g\")\n    .data(chord.groups)\n  .enter().append(\"g\").selectAll(\"g\")\n    .data(groupTicks)\n  .enter().append(\"g\")\n    .attr(\"transform\", function(d) {\n      return \"rotate(\" + (d.angle * 180 / Math.PI - 90) + \")\"\n          + \"translate(\" + outerRadius + \",0)\";\n    });\n\nticks.append(\"line\")\n    .attr(\"x1\", 1)\n    .attr(\"y1\", 0)\n    .attr(\"x2\", 5)\n    .attr(\"y2\", 0)\n    .style(\"stroke\", \"#000\");\n\nticks.append(\"text\")\n    .attr(\"x\", 8)\n    .attr(\"dy\", \".35em\")\n    .attr(\"transform\", function(d) { return d.angle \u003e Math.PI ? \"rotate(180)translate(-16)\" : null; })\n    .style(\"text-anchor\", function(d) { return d.angle \u003e Math.PI ? \"end\" : null; })\n    .text(function(d) { return d.label; });\n\nsvg.append(\"g\")\n    .attr(\"class\", \"chord\")\n  .selectAll(\"path\")\n    .data(chord.chords)\n  .enter().append(\"path\")\n    .attr(\"d\", d3.svg.chord().radius(innerRadius))\n    .style(\"fill\", function(d) { return fill(d.target.index); })\n    .style(\"opacity\", 1);\n\n// Returns an array of tick angles and labels, given a group.\nfunction groupTicks(d) {\n  var k \u003d (d.endAngle - d.startAngle) / d.value;\n  return d3.range(0, d.value, 1000).map(function(v, i) {\n    return {\n      angle: v * k + d.startAngle,\n      label: i % 5 ? null : v / 1000 + \"k\"\n    };\n  });\n}\n\n// Returns an event handler for fading a given chord group.\nfunction fade(opacity) {\n  return function(g, i) {\n    svg.selectAll(\".chord path\")\n        .filter(function(d) { return d.source.index !\u003d i \u0026\u0026 d.target.index !\u003d i; })\n      .transition()\n        .style(\"opacity\", opacity);\n  };\n}\n\n\u003c/script\u003e",
+      "user": "anonymous",
+      "dateUpdated": "Feb 18, 2017 10:02:40 PM",
+      "config": {
+        "colWidth": 12.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": true
+        },
+        "editorMode": "ace/mode/undefined",
+        "editorHide": false,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "ANGULAR",
+            "data": "\u003cstyle\u003e\n#myGraph {\n  font: 10px sans-serif;\n  width: 960px;\n  height: 500px;\n  margin: auto;\n}\n\n.chord path {\n  fill-opacity: .67;\n  stroke: #000;\n  stroke-width: .5px;\n}\n\n\u003c/style\u003e\n\n\u003cdiv id\u003d\"myGraph\"\u003e\u003c/div\u003e\n\u003cscript\u003e\n\n// From http://mkweb.bcgsc.ca/circos/guide/tables/\nvar matrix \u003d [\n  [11975,  5871, 8916, 2868],\n  [ 1951, 10048, 2060, 6171],\n  [ 8010, 16145, 8090, 8045],\n  [ 1013,   990,  940, 6907]\n];\n\nvar chord \u003d d3.layout.chord()\n    .padding(.05)\n    .sortSubgroups(d3.descending)\n    .matrix(matrix);\n\nvar width \u003d 960,\n    height \u003d 500\n    innerRadius \u003d Math.min(width, height) * .41,\n    outerRadius \u003d innerRadius * 1.1;\n\nvar fill \u003d d3.scale.ordinal()\n    .domain(d3.range(4))\n    .range([\"#000000\", \"#FFDD89\", \"#957244\", \"#F26223\"]);\n\nvar svg \u003d d3.select(\"#myGraph\").append(\"svg\")\n    .attr(\"width\", width)\n    .attr(\"height\", height)\n  .append(\"g\")\n    .attr(\"transform\", \"translate(\" + width / 2 + \",\" + height / 2 + \")\");\n\nsvg.append(\"g\").selectAll(\"path\")\n    .data(chord.groups)\n  .enter().append(\"path\")\n    .style(\"fill\", function(d) { return fill(d.index); })\n    .style(\"stroke\", function(d) { return fill(d.index); })\n    .attr(\"d\", d3.svg.arc().innerRadius(innerRadius).outerRadius(outerRadius))\n    .on(\"mouseover\", fade(.1))\n    .on(\"mouseout\", fade(1));\n\nvar ticks \u003d svg.append(\"g\").selectAll(\"g\")\n    .data(chord.groups)\n  .enter().append(\"g\").selectAll(\"g\")\n    .data(groupTicks)\n  .enter().append(\"g\")\n    .attr(\"transform\", function(d) {\n      return \"rotate(\" + (d.angle * 180 / Math.PI - 90) + \")\"\n          + \"translate(\" + outerRadius + \",0)\";\n    });\n\nticks.append(\"line\")\n    .attr(\"x1\", 1)\n    .attr(\"y1\", 0)\n    .attr(\"x2\", 5)\n    .attr(\"y2\", 0)\n    .style(\"stroke\", \"#000\");\n\nticks.append(\"text\")\n    .attr(\"x\", 8)\n    .attr(\"dy\", \".35em\")\n    .attr(\"transform\", function(d) { return d.angle \u003e Math.PI ? \"rotate(180)translate(-16)\" : null; })\n    .style(\"text-anchor\", function(d) { return d.angle \u003e Math.PI ? \"end\" : null; })\n    .text(function(d) { return d.label; });\n\nsvg.append(\"g\")\n    .attr(\"class\", \"chord\")\n  .selectAll(\"path\")\n    .data(chord.chords)\n  .enter().append(\"path\")\n    .attr(\"d\", d3.svg.chord().radius(innerRadius))\n    .style(\"fill\", function(d) { return fill(d.target.index); })\n    .style(\"opacity\", 1);\n\n// Returns an array of tick angles and labels, given a group.\nfunction groupTicks(d) {\n  var k \u003d (d.endAngle - d.startAngle) / d.value;\n  return d3.range(0, d.value, 1000).map(function(v, i) {\n    return {\n      angle: v * k + d.startAngle,\n      label: i % 5 ? null : v / 1000 + \"k\"\n    };\n  });\n}\n\n// Returns an event handler for fading a given chord group.\nfunction fade(opacity) {\n  return function(g, i) {\n    svg.selectAll(\".chord path\")\n        .filter(function(d) { return d.source.index !\u003d i \u0026\u0026 d.target.index !\u003d i; })\n      .transition()\n        .style(\"opacity\", opacity);\n  };\n}\n\n\u003c/script\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1487451455758_-1082469039",
+      "id": "20170218-215735_1237620176",
+      "dateCreated": "Feb 18, 2017 9:57:35 PM",
+      "dateStarted": "Feb 18, 2017 10:01:48 PM",
+      "dateFinished": "Feb 18, 2017 10:01:49 PM",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "user": "anonymous",
       "config": {},
       "settings": {
@@ -8,9 +46,9 @@
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1487451240407_-863083901",
-      "id": "20170218-215400_1297598164",
-      "dateCreated": "Feb 18, 2017 9:54:00 PM",
+      "jobName": "paragraph_1487451646992_1819984718",
+      "id": "20170218-220046_762064683",
+      "dateCreated": "Feb 18, 2017 10:00:46 PM",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
