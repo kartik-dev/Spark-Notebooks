@@ -1,0 +1,44 @@
+{
+  "paragraphs": [
+    {
+      "user": "anonymous",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1487451240407_-863083901",
+      "id": "20170218-215400_1297598164",
+      "dateCreated": "Feb 18, 2017 9:54:00 PM",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "FirstNotebook",
+  "id": "2CBP75JCF",
+  "angularObjects": {
+    "2CAZW3V2Z:shared_process": [],
+    "2CB9HZFRN:shared_process": [],
+    "2C9BRA6CA:shared_process": [],
+    "2CB1W6E1Z:shared_process": [],
+    "2CC4U1GMA:shared_process": [],
+    "2C8G3FNC3:shared_process": [],
+    "2CACMQ6SG:shared_process": [],
+    "2CARRNGS9:shared_process": [],
+    "2C8D38TXN:shared_process": [],
+    "2C9TJXDPY:shared_process": [],
+    "2CA6GSHCV:shared_process": [],
+    "2CBYQ4Z8F:shared_process": [],
+    "2CAXR9CUW:shared_process": [],
+    "2C8DQF972:shared_process": [],
+    "2C9A3YMFY:shared_process": [],
+    "2C9J9MTU7:shared_process": [],
+    "2C8JCWHVR:shared_process": [],
+    "2CA251ZB4:shared_process": [],
+    "2C8A1Z249:shared_process": [],
+    "2C8K7VEZR:shared_process": []
+  },
+  "config": {},
+  "info": {}
+}
